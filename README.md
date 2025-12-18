@@ -96,20 +96,29 @@ These images are rendered directly from the `docs/` folder:
 +---------------------------------------------------+
 ```
 
-### 2.3 Demo video
+---
 
-Below is the demo video embedded with a `<video>` tag, using the Google Drive link the user provided:
+## Demo video
+
+Below is a demo showing the full flow — from building a pipeline to running it and viewing the result.
 
 <video width="720" controls>
   <source src="https://drive.google.com/uc?export=download&id=1JQUiFxsCfE4ZtFij4qD2iix0ncTRhVFI" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
-- build the pipeline in the **frontend**.
-- The frontend gives the user **live previews** (what values flow into Text/Output/LLM nodes).
-- When click **Run pipeline**, the frontend sends the graph to the **backend**.
-- The backend analyses the graph and sends a **summary** back.
-- The frontend shows that summary in a **modal**.
+🔗 **Direct link:**  
+https://drive.google.com/file/d/1JQUiFxsCfE4ZtFij4qD2iix0ncTRhVFI/view
+
+---
+
+## How the system works (in words)
+
+- The user builds the pipeline in the **frontend**
+- The frontend computes **live previews** of node values
+- When the user clicks **Run pipeline**, the graph is sent to the backend
+- The backend analyzes the structure and returns a summary
+- The frontend displays the result in a modal
 
 ---
 
