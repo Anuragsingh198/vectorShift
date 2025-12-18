@@ -1,25 +1,52 @@
-##This assignment is about:
+# Visual LLM Pipeline Builder
 
-- **Frontend**: a nice, modern React interface where the user visually designs this pipeline.
-- **Backend**: a small FastAPI service that checks the user's graph and tells the user:
-  - How many nodes and edges the user created.
-  - Whether your graph is a valid **Directed Acyclic Graph (DAG)** (i.e. no loops that feed back into themselves).
-- Each block (Input, Text, LLM, Output, etc.) is a **node**.
-- The lines between them are **arrows that show the direction of data flow**.
-- The user drags blocks from the top toolbar, drops them on the canvas, connects them, and at the end presses **Run pipeline** to see what happens.
+This project is a **visual workflow builder for LLM-style pipelines**, inspired by tools like VectorShift and LangFlow.
+
+The idea is simple:  
+I wanted to let users **visually design a pipeline** by dragging nodes, connecting them, and running the pipeline to understand how data flows — while also validating the structure on the backend.
+
 ---
 
-## 2. High‑level flowchart 
+## What this assignment is about
 
-### 2.1 Images (in `docs/` folder)
+This project is split into two main parts:
 
-The user can find the diagrams in the `docs` folder:
+- **Frontend**
+  - A clean, modern React interface
+  - Users visually build a pipeline by dragging and connecting nodes
+  - Live previews show what data is flowing through the pipeline
 
-```markdown
+- **Backend**
+  - A small FastAPI service
+  - Analyzes the pipeline graph sent from the frontend
+  - Returns:
+    - Number of nodes
+    - Number of edges
+    - Whether the graph is a valid **Directed Acyclic Graph (DAG)**
+
+### Core concepts
+
+- Each block (**Input**, **Text**, **LLM**, **Output**, etc.) is a **node**
+- Connections between blocks are **directed edges**
+- Data flows **left → right**
+- The user builds the pipeline visually and clicks **Run pipeline** to validate it
+
+---
+
+## High-level flowchart
+
+### System diagrams
+
+These images are rendered directly from the `docs/` folder:
+
 ![System flow diagram](docs/system-flow.png)
+
 ![Sample pipeline screenshot](docs/pipeline-sample.png)
+
 ![Sample pipeline output](docs/output.png)
-```
+
+---
+### End-to-end flow (box diagram)
 
 ### 2.2 flowchart
 ```
@@ -73,13 +100,10 @@ The user can find the diagrams in the `docs` folder:
 
 Below is the demo video embedded with a `<video>` tag, using the Google Drive link the user provided:
 
-```html
-<video width="640" controls>
-  <source src="https://drive.google.com/file/d/1JQUiFxsCfE4ZtFij4qD2iix0ncTRhVFI/view?usp=drive_link" type="video/mp4" />
-  The user's browser does not support the video tag. The user can also watch the video here:
-  <a href="https://drive.google.com/file/d/1JQUiFxsCfE4ZtFij4qD2iix0ncTRhVFI/view?usp=drive_link">Demo video</a>.
+<video width="720" controls>
+  <source src="https://drive.google.com/uc?export=download&id=1JQUiFxsCfE4ZtFij4qD2iix0ncTRhVFI" type="video/mp4">
+  Your browser does not support the video tag.
 </video>
-```
 
 - build the pipeline in the **frontend**.
 - The frontend gives the user **live previews** (what values flow into Text/Output/LLM nodes).
