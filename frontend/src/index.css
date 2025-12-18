@@ -9,7 +9,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fafafa;
+  background:
+    radial-gradient(circle at 0% 0%, #1f2937 0%, transparent 45%),
+    radial-gradient(circle at 100% 0%, #0f172a 0%, transparent 45%),
+    radial-gradient(circle at 50% 100%, #020617 0%, #000212 60%);
+  color: #e5e7eb;
+}
+
+#root {
+  height: 100vh;
 }
 
 code {
@@ -18,50 +26,71 @@ code {
 }
 
 /* ReactFlow customizations */
+.react-flow__pane {
+  cursor: default;
+}
+
 .react-flow__handle {
   width: 10px;
   height: 10px;
-  background-color: #555;
-  border: 2px solid #fff;
+  background-color: #38bdf8;
+  border: 2px solid #020617;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+  border-radius: 999px;
 }
 
 .react-flow__handle:hover {
-  background-color: #2196F3;
+  background-color: #f97316;
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.35);
 }
 
 .react-flow__edge-path {
   stroke-width: 2;
+  stroke: rgba(148, 163, 184, 0.9);
 }
 
 .react-flow__edge.selected .react-flow__edge-path {
-  stroke: #2196F3;
+  stroke: #38bdf8;
   stroke-width: 3;
 }
 
 .react-flow__edge:hover .react-flow__edge-path {
   stroke-width: 3;
+  stroke: #f97316;
+}
+
+.react-flow__node {
+  border-radius: 18px;
 }
 
 .react-flow__node.selected {
-  box-shadow: 0 0 0 2px #2196F3 !important;
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.9) !important;
 }
 
 .react-flow__controls {
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background-color: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .react-flow__controls-button {
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid rgba(51, 65, 85, 0.85);
+  color: #e5e7eb;
 }
 
 .react-flow__controls-button:hover {
-  background-color: #f5f5f5;
+  background-color: rgba(30, 64, 175, 0.7);
 }
 
 .react-flow__minimap {
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background-color: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+  border-radius: 16px;
+}
+
+.react-flow__minimap-mask {
+  fill: rgba(15, 23, 42, 0.9);
 }

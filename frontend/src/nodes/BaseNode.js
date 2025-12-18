@@ -16,27 +16,92 @@ export const BaseNode = ({
   titleColor = '#333333'
 }) => {
   const deleteNode = useStore((state) => state.deleteNode);
+  const nodeType = data?.nodeType || title || 'Node';
+
+  const accentColor = borderColor || '#38bdf8';
+  const softAccent = `${accentColor}55`;
+  const softBackgroundTint = `${backgroundColor}33`;
+
   const nodeStyle = {
     width: width,
     minHeight: height,
-    backgroundColor: backgroundColor,
-    border: `2px solid ${borderColor}`,
-    borderRadius: '8px',
-    padding: '12px',
-    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+    background: `
+      radial-gradient(circle at 0% 0%, ${softAccent}, transparent 55%),
+      radial-gradient(circle at 100% 100%, ${softBackgroundTint}, transparent 55%),
+      linear-gradient(145deg, rgba(15,23,42,0.98), rgba(15,23,42,0.94))
+    `,
+    border: '1px solid rgba(148,163,184,0.65)',
+    borderRadius: '18px',
+    padding: '12px 12px 10px 12px',
+    boxShadow: '0 18px 45px rgba(15,23,42,0.95)',
     display: 'flex',
     flexDirection: 'column',
     gap: '8px',
-    position: 'relative'
+    position: 'relative',
+    color: '#e5e7eb',
+    backdropFilter: 'blur(18px)',
+    WebkitBackdropFilter: 'blur(18px)',
+    overflow: 'hidden'
   };
 
-  const titleStyle = {
-    fontSize: '14px',
+  const headerStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: '4px',
+    paddingRight: '26px',
+    gap: '8px'
+  };
+
+  const titleBlockStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    minWidth: 0
+  };
+
+  const iconCircleStyle = {
+    width: 24,
+    height: 24,
+    borderRadius: '999px',
+    background: `radial-gradient(circle at 30% 0%, ${softAccent}, rgba(15,23,42,0.95))`,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxShadow: '0 10px 22px rgba(15,23,42,0.9)'
+  };
+
+  const nodeTitleStyle = {
+    fontSize: '12px',
     fontWeight: '600',
     color: titleColor,
-    marginBottom: '4px',
     textTransform: 'uppercase',
-    letterSpacing: '0.5px'
+    letterSpacing: '0.08em',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden'
+  };
+
+  const nodeSubtitleStyle = {
+    fontSize: '10px',
+    color: '#9ca3af',
+    marginTop: '1px',
+    textTransform: 'none'
+  };
+
+  const badgeStyle = {
+    padding: '3px 8px',
+    borderRadius: '999px',
+    border: '1px solid rgba(148,163,184,0.7)',
+    backgroundColor: 'rgba(15,23,42,0.9)',
+    fontSize: '9px',
+    color: '#9ca3af',
+    textTransform: 'uppercase',
+    letterSpacing: '0.12em',
+    whiteSpace: 'nowrap',
+    maxWidth: '40%',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden'
   };
 
   const handleDelete = (e) => {
@@ -48,22 +113,23 @@ export const BaseNode = ({
 
   const deleteButtonStyle = {
     position: 'absolute',
-    top: '8px',
-    right: '8px',
-    width: '24px',
-    height: '24px',
+    top: '6px',
+    right: '6px',
+    width: '22px',
+    height: '22px',
     borderRadius: '50%',
-    backgroundColor: '#ff4444',
-    border: 'none',
+    background: 'radial-gradient(circle at 30% 0%, #fecaca, #b91c1c)',
+    border: '1px solid rgba(15,23,42,0.95)',
     color: '#fff',
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontSize: '14px',
+    fontSize: '13px',
     fontWeight: 'bold',
-    opacity: 0.7,
-    transition: 'all 0.2s ease',
+    opacity: 0.85,
+    boxShadow: '0 10px 22px rgba(127,29,29,0.95)',
+    transition: 'transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease, filter 0.18s ease',
     zIndex: 10
   };
 
@@ -74,12 +140,18 @@ export const BaseNode = ({
         style={deleteButtonStyle}
         onClick={handleDelete}
         onMouseEnter={(e) => {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'scale(1.1)';
+          e.currentTarget.style.opacity = '1';
+          e.currentTarget.style.transform = 'scale(1.08) translateZ(0)';
+          e.currentTarget.style.boxShadow =
+            '0 14px 28px rgba(127,29,29,1)';
+          e.currentTarget.style.filter = 'brightness(1.08)';
         }}
         onMouseLeave={(e) => {
-          e.target.style.opacity = '0.7';
-          e.target.style.transform = 'scale(1)';
+          e.currentTarget.style.opacity = '0.85';
+          e.currentTarget.style.transform = 'scale(1) translateZ(0)';
+          e.currentTarget.style.boxShadow =
+            '0 10px 22px rgba(127,29,29,0.95)';
+          e.currentTarget.style.filter = 'brightness(1)';
         }}
         title="Delete node (or press Delete key)"
       >
@@ -97,10 +169,57 @@ export const BaseNode = ({
         />
       ))}
 
-      {/* Title */}
+      {/* Title / header */}
       {title && (
-        <div style={titleStyle}>
-          {title}
+        <div style={headerStyle}>
+          <div style={titleBlockStyle}>
+            <div style={iconCircleStyle}>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="4"
+                  y="5"
+                  width="6"
+                  height="6"
+                  rx="1.4"
+                  stroke="#e5e7eb"
+                  strokeWidth="1.4"
+                />
+                <rect
+                  x="14"
+                  y="13"
+                  width="6"
+                  height="6"
+                  rx="1.4"
+                  stroke="#e5e7eb"
+                  strokeWidth="1.4"
+                />
+                <path
+                  d="M10 8.5L14 10.5L17 9"
+                  stroke={accentColor}
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+              <div style={nodeTitleStyle}>
+                {title}
+              </div>
+              <div style={nodeSubtitleStyle}>
+                {nodeType}
+              </div>
+            </div>
+          </div>
+          <div style={badgeStyle}>
+            NODE
+          </div>
         </div>
       )}
 

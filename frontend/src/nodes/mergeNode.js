@@ -8,9 +8,9 @@ export const MergeNode = ({ id, data }) => {
       id={id}
       data={data}
       title="Merge"
-      backgroundColor="#FFF9C4"
-      borderColor="#FFC107"
-      titleColor="#F57C00"
+      backgroundColor="#020617"
+      borderColor="#facc15"
+      titleColor="#fef9c3"
       inputHandles={[
         { id: `${id}-input1`, name: 'input1', top: '25%' },
         { id: `${id}-input2`, name: 'input2', top: '50%' },
@@ -18,7 +18,7 @@ export const MergeNode = ({ id, data }) => {
       ]}
       outputHandles={[{ id: `${id}-merged`, name: 'merged' }]}
     >
-      <div style={{ fontSize: '12px', color: '#666', textAlign: 'center' }}>
+      <div style={{ fontSize: '12px', color: '#e5e7eb', textAlign: 'center' }}>
         Combines multiple inputs into one output
       </div>
     </BaseNode>

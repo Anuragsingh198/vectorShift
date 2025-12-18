@@ -12,9 +12,9 @@ export const ConditionNode = ({ id, data }) => {
       id={id}
       data={data}
       title="Condition"
-      backgroundColor="#F1F8E9"
-      borderColor="#8BC34A"
-      titleColor="#558B2F"
+      backgroundColor="#020617"
+      borderColor="#84cc16"
+      titleColor="#e5e7eb"
       inputHandles={[{ id: `${id}-value`, name: 'value' }]}
       outputHandles={[
         { id: `${id}-true`, name: 'true', top: '33%' },
@@ -22,12 +22,20 @@ export const ConditionNode = ({ id, data }) => {
       ]}
     >
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-        <label style={{ fontSize: '12px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        <label style={{ fontSize: '12px', display: 'flex', flexDirection: 'column', gap: '4px', color: '#e5e7eb' }}>
           <span style={{ fontWeight: '500' }}>Operator:</span>
           <select 
             value={operator} 
             onChange={(e) => setOperator(e.target.value)}
-            style={{ padding: '4px', borderRadius: '4px', border: '1px solid #ccc' }}
+            style={{ 
+              padding: '6px', 
+              borderRadius: '8px', 
+              border: '1px solid rgba(55,65,81,0.95)',
+              backgroundColor: 'rgba(15,23,42,0.96)',
+              color: '#e5e7eb',
+              fontSize: '12px',
+              outline: 'none'
+            }}
           >
             <option value="==">Equals (==)</option>
             <option value="!=">Not Equals (!=)</option>
@@ -37,13 +45,21 @@ export const ConditionNode = ({ id, data }) => {
             <option value="<=">Less or Equal (&lt;=)</option>
           </select>
         </label>
-        <label style={{ fontSize: '12px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+        <label style={{ fontSize: '12px', display: 'flex', flexDirection: 'column', gap: '4px', color: '#e5e7eb' }}>
           <span style={{ fontWeight: '500' }}>Threshold:</span>
           <input
             type="text"
             value={threshold}
             onChange={(e) => setThreshold(e.target.value)}
-            style={{ padding: '4px', borderRadius: '4px', border: '1px solid #ccc' }}
+            style={{ 
+              padding: '6px', 
+              borderRadius: '8px', 
+              border: '1px solid rgba(55,65,81,0.95)',
+              backgroundColor: 'rgba(15,23,42,0.96)',
+              color: '#e5e7eb',
+              fontSize: '12px',
+              outline: 'none'
+            }}
             placeholder="0"
           />
         </label>

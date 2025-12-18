@@ -4,14 +4,25 @@ import { SubmitButton } from './submit';
 
 function App() {
   return (
-    <div style={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      height: '100vh',
-      backgroundColor: '#fafafa'
-    }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
+        padding: '16px 18px',
+        gap: '12px',
+        boxSizing: 'border-box',
+      }}
+    >
       <PipelineToolbar />
-      <div style={{ flex: 1, overflow: 'hidden' }}>
+      <div
+        style={{
+          flex: 1,
+          overflow: 'hidden',
+          borderRadius: '24px',
+          position: 'relative',
+        }}
+      >
         <PipelineUI />
       </div>
       <SubmitButton />

@@ -10,11 +10,6 @@ import { InputNode } from './nodes/inputNode';
 import { LLMNode } from './nodes/llmNode';
 import { OutputNode } from './nodes/outputNode';
 import { TextNode } from './nodes/textNode';
-import { TransformNode } from './nodes/transformNode';
-import { FilterNode } from './nodes/filterNode';
-import { MergeNode } from './nodes/mergeNode';
-import { SplitNode } from './nodes/splitNode';
-import { ConditionNode } from './nodes/conditionNode';
 
 import 'reactflow/dist/style.css';
 
@@ -25,11 +20,6 @@ const nodeTypes = {
   llm: LLMNode,
   customOutput: OutputNode,
   text: TextNode,
-  transform: TransformNode,
-  filter: FilterNode,
-  merge: MergeNode,
-  split: SplitNode,
-  condition: ConditionNode,
 };
 
 const selector = (state) => ({
@@ -147,34 +137,54 @@ export const PipelineUI = () => {
     }, []);
 
     return (
-        <>
-        <div ref={reactFlowWrapper} style={{width: '100vw', height: '70vh', backgroundColor: '#fafafa'}}>
-            <ReactFlow
-                nodes={nodes}
-                edges={edges}
-                onNodesChange={onNodesChange}
-                onEdgesChange={onEdgesChange}
-                onConnect={onConnect}
-                onDrop={onDrop}
-                onDragOver={onDragOver}
-                onInit={setReactFlowInstance}
-                nodeTypes={nodeTypes}
-                proOptions={proOptions}
-                snapGrid={[gridSize, gridSize]}
-                connectionLineType='smoothstep'
-                defaultEdgeOptions={{
-                  style: { strokeWidth: 2, stroke: '#555' },
-                  animated: true,
-                  markerEnd: { type: 'arrowclosed' }
-                }}
-                deleteKeyCode="Delete"
-                multiSelectionKeyCode="Shift"
-            >
-                <Background color="#e0e0e0" gap={gridSize} size={1} />
-                <Controls />
-                <MiniMap />
-            </ReactFlow>
+      <>
+        <div
+          ref={reactFlowWrapper}
+          style={{
+            width: '100%',
+            height: '100%',
+            background:
+              'radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.35) 0, transparent 45%), radial-gradient(circle at 100% 0%, rgba(249, 115, 22, 0.2) 0, transparent 45%), radial-gradient(circle at 50% 120%, #020617 0, #000212 65%)',
+            padding: '16px',
+            borderRadius: '24px',
+            boxShadow: '0 35px 120px rgba(0,0,0,0.85)',
+            border: '1px solid rgba(148,163,184,0.5)',
+            boxSizing: 'border-box',
+          }}
+        >
+          <ReactFlow
+            nodes={nodes}
+            edges={edges}
+            onNodesChange={onNodesChange}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            onDrop={onDrop}
+            onDragOver={onDragOver}
+            onInit={setReactFlowInstance}
+            nodeTypes={nodeTypes}
+            proOptions={proOptions}
+            snapGrid={[gridSize, gridSize]}
+            connectionLineType="smoothstep"
+            defaultEdgeOptions={{
+              style: { strokeWidth: 2, stroke: 'rgba(148,163,184,0.8)' },
+              animated: true,
+              markerEnd: { type: 'arrowclosed' },
+            }}
+            deleteKeyCode="Delete"
+            multiSelectionKeyCode="Shift"
+          >
+            <Background
+              color="rgba(148,163,184,0.35)"
+              gap={gridSize}
+              size={1.1}
+            />
+            <Controls />
+            <MiniMap
+              nodeColor={() => '#38bdf8'}
+              maskColor="rgba(15,23,42,0.8)"
+            />
+          </ReactFlow>
         </div>
-        </>
+      </>
     )
 }
